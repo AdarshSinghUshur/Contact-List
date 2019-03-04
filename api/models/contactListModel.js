@@ -13,6 +13,7 @@ var ContactSchema = new Schema({
   },
   email: {
     type: String,
+    required: 'Email is required'
   },
   phone: {
     type: String,
