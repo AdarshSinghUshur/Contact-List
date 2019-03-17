@@ -2,7 +2,7 @@
 module.exports = function(app) {
   var contactList = require('../controllers/contactListController');
 
-  // todoList Routes
+  // contactList Routes
   app.route('/contacts')
     .get(contactList.list_all_contacts)
     .post(contactList.create_a_contact);
