@@ -18,9 +18,13 @@ exports.create_a_contact = function(req, res) {
   req.checkBody('firstName', 'First Name should be no more than 20 characters').isLength({max: 20});
   req.checkBody('lastName', 'Last Name is required').notEmpty();
   req.checkBody('lastName', 'Last Name should be no more than 30 characters').isLength({max: 30});
-  req.checkBody('email', 'Email does not appear to be valid').isEmail();
-  //req.checkBody('phone', 'Phone number does not appear to be valid').isMobilePhone();
-
+  req.checkBody('email', 'Email address is invalid').isEmail();
+  req.checkBody('phone', 'Phone number must be 10 digits').isNumeric().isLength({min: 10, max: 10});
+  req.checkBody('streetAddress1', 'Street Address 1 should be no more than 30 characters').isLength({max: 30});
+  req.checkBody('streetAddress2', 'Street Address 2 should be no more than 20 characters').isLength({max: 20});
+  req.checkBody('city', 'City should be no more than 30 characters').isLength({max: 30});
+  req.checkBody('state', 'State should be a two-letter abbreviation').isAlpha().isLength({min: 2, max: 2});
+  req.checkBody('postalCode', 'Postal Code must be 5 digits').isNumeric().isLength({min: 5, max: 5});
 
   var errors = req.validationErrors();
   if (errors) {
