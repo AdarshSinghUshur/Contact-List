@@ -6,12 +6,22 @@ var ContactSchema = new Schema({
   firstName: {
     type: String,
     required: true,
-    maxlength: 20
+    maxlength: 20,
+    validate: {
+      validator: function(v) {
+        return /^[a-zA-Z'-]+( [a-zA-Z'-]+)*$/.test(v);
+      },
+    }
   },
   lastName: {
     type: String,
     required: true,
-    maxlength: 30
+    maxlength: 30,
+    validate: {
+      validator: function(v) {
+        return /^[a-zA-Z'-]+( [a-zA-Z'-]+)*$/.test(v);
+      },
+    }
   },
   email: {
     type: String,
@@ -32,15 +42,30 @@ var ContactSchema = new Schema({
   },
   streetAddress1: {
     type: String,
-    maxlength: 30
+    maxlength: 30,
+    validate: {
+      validator: function(v) {
+        return /^[a-zA-Z0-9'.-]+( [a-zA-Z0-9'.-]+)*$/.test(v);
+      },
+    }
   },
   streetAddress2: {
     type: String,
-    maxlength: 20
+    maxlength: 20,
+    validate: {
+      validator: function(v) {
+        return /^[a-zA-Z0-9'.-]+( [a-zA-Z0-9'.-]+)*$/.test(v);
+      },
+    }
   },
   city: {
     type: String,
-    maxlength: 30
+    maxlength: 30,
+    validate: {
+      validator: function(v) {
+        return /^[a-zA-Z0-9'-.]+( [a-zA-Z0-9'-.]+)*$/.test(v);
+      },
+    }
   },
   state: {
     type: String,
@@ -55,7 +80,7 @@ var ContactSchema = new Schema({
     type: String,
     validate: {
       validator: function(v) {
-        return /^\d{5}$/.test(v);
+        return /^[0-9]{5}(?:-[0-9]{4})?$/.test(v);
       },
     }
   },
