@@ -4,15 +4,14 @@ var express = require('express'),
   mongoose = require('mongoose'),
   Contact = require('./api/models/contactListModel'), //created model loading here
   bodyParser = require('body-parser');
-  expressValidator = require('express-validator');
   
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/ContactListdb'); 
+mongoose.set('runValidators', true);
+mongoose.connect('mongodb://localhost/ContactListdb', { useNewUrlParser: true }); 
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(expressValidator());
 
 var routes = require('./api/routes/contactListRoutes'); //importing route
 routes(app); //register the route

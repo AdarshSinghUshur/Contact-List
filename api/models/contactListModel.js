@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var ContactSchema = new Schema({
   firstName: {
     type: String,
-    required: true,
+    required: [true, "First Name is required"],
     maxlength: 20,
     validate: {
       validator: function(v) {
