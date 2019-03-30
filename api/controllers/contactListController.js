@@ -15,7 +15,7 @@ exports.create_a_contact = function(req, res) {
   var new_contact = new Contact(req.body);
   new_contact.save(function(err, contact) {
     if (err)
-      return res.status(400).json({ err });
+      return res.status(400).json({ err:err.message });
     res.json(contact);
   });
 };
@@ -36,7 +36,7 @@ exports.update_a_contact = function(req, res) {
     else
       Contact.findOneAndUpdate({_id: req.params.contactId}, req.body, {new: true}, function(err, contact) {
         if (err)
-          return res.status(400).json({ err });
+          return res.status(400).json({ err:err.message });
         res.json(contact);
         });
   }); 
@@ -44,8 +44,6 @@ exports.update_a_contact = function(req, res) {
 
 exports.delete_a_contact = function(req, res) {
   Contact.findById(req.params.contactId, function(err, contact) {
-    if (err)
-      res.sendStatus(err);
     if (!contact)
       res.sendStatus(404);
     else 
@@ -54,7 +52,7 @@ exports.delete_a_contact = function(req, res) {
       }, function(err, contact) {
         if (err)
           res.sendStatus(err);
-        res.json({ message: 'Contact successfully deleted' });
+        res.sendStatus(204);
       });
   }); 
 };
