@@ -15,7 +15,7 @@ var ContactSchema = new Schema({
   },
   lastName: {
     type: String,
-    required: true,
+    required: [true, "Last Name is required"],
     maxlength: 30,
     validate: {
       validator: function(v) {
@@ -25,7 +25,8 @@ var ContactSchema = new Schema({
   },
   email: {
     type: String,
-    required: true,
+    required: [true, "Email is required"],
+    maxlength: 50,
     validate: {
       validator: function(v) {
         return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,})?$/.test(v);
