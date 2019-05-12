@@ -85,6 +85,9 @@ var ContactSchema = new Schema({
       },
     }
   },
+  social: [
+    { url: String }    
+  ]
 });
 
 module.exports = mongoose.model('Contacts', ContactSchema);
