@@ -37,7 +37,7 @@ exports.update_a_contact = function(req, res) {
       Contact.replaceOne({_id: req.params.contactId}, req.body, {new: true}, function(err, contact) {
         if (err)
           return res.status(400).json({ err:err.message });
-        res.json(contact);
+        res.sendStatus(204);
         });
   }); 
 };
