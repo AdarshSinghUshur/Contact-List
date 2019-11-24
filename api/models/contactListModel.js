@@ -2,49 +2,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var ContactSchema = new Schema({
-  firstName: {
-    type: String,
-    required: [true, "First Name is required"],
-    maxlength: 20,
-    validate: {
-      validator: function(v) {
-        return /^[a-zA-Z'-]+( [a-zA-Z'-]+)*$/.test(v);
-      }
-    }
-  },
-  lastName: {
-    type: String,
-    required: [true, "Last Name is required"],
-    maxlength: 30,
-    validate: {
-      validator: function(v) {
-        return /^[a-zA-Z'-]+( [a-zA-Z'-]+)*$/.test(v);
-      }
-    }
-  },
-  email: {
-    type: String,
-    required: [true, "Email is required"],
-    maxlength: 50,
-    validate: {
-      validator: function(v) {
-        return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,})?$/.test(v);
-      }
-    }
-  },
-  phone: {
-    type: String,
-    validate: {
-      validator: function(v) {
-        return /^\d{10}$/.test(v);
-      }
-    }
-  },
-  address: {
-    type: "object",
-    properties: {
-      streetAddress1: {
+var AddressSchema = new Schema({
+        streetAddress1: {
         type: String,
         maxlength: 30,
         validate: {
@@ -88,8 +47,50 @@ var ContactSchema = new Schema({
           }
         }
       }
+});
+
+var ContactSchema = new Schema({
+  firstName: {
+    type: String,
+    required: [true, "First Name is required"],
+    maxlength: 20,
+    validate: {
+      validator: function(v) {
+        return /^[a-zA-Z'-]+( [a-zA-Z'-]+)*$/.test(v);
+      }
     }
-  }  
+  },
+  lastName: {
+    type: String,
+    required: [true, "Last Name is required"],
+    maxlength: 30,
+    validate: {
+      validator: function(v) {
+        return /^[a-zA-Z'-]+( [a-zA-Z'-]+)*$/.test(v);
+      }
+    }
+  },
+  email: {
+    type: String,
+    required: [true, "Email is required"],
+    maxlength: 50,
+    validate: {
+      validator: function(v) {
+        return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,})?$/.test(v);
+      }
+    }
+  },
+  phone: {
+    type: String,
+    validate: {
+      validator: function(v) {
+        return /^\d{10}$/.test(v);
+      }
+    }
+  },
+  address: {
+    type: AddressSchema,
+  },  
 });
 
 module.exports = mongoose.model('Contacts', ContactSchema);
