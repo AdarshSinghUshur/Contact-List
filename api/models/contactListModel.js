@@ -2,51 +2,46 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var AddressSchema = new Schema({
-        streetAddress1: {
-        type: String,
-        maxlength: 30,
-        validate: {
-          validator: function(v) {
-            return /^[a-zA-Z0-9'.-]+( [a-zA-Z0-9'.-]+)*$/.test(v);
-          }
-        }
-      },
-      streetAddress2: {
-        type: String,
-        maxlength: 20,
-        validate: {
-          validator: function(v) {
-            return /^[a-zA-Z0-9'.-]+( [a-zA-Z0-9'.-]+)*$/.test(v);
-          }
-        }
-      },
-      city: {
-        type: String,
-        maxlength: 30,
-        validate: {
-          validator: function(v) {
-            return /^[a-zA-Z0-9'-.]+( [a-zA-Z0-9'-.]+)*$/.test(v);
-          }
-        }
-      },
-      state: {
-        type: String,
-        maxlength: 2,
-        validate: {
-          validator: function(v) {
-            return /\b[a-zA-Z]{2}\b/.test(v);
-          }
-        }
-      },
-      postalCode: {
-        type: String,
-        validate: {
-          validator: function(v) {
-            return /^[0-9]{5}(?:-[0-9]{4})?$/.test(v);
-          }
-        }
+var LocationSchema = new Schema({
+  city: {
+    type: String,
+    maxlength: 30,
+    validate: {
+      validator: function(v) {
+        return /^[a-zA-Z0-9'.,-]+( [a-zA-Z0-9'.-]+)*$/.test(v);
       }
+    }
+  },
+  country: {
+    type: String,
+    maxlength: 30,
+    validate: {
+      validator: function(v) {
+        return /^[a-zA-Z0-9'.-]+( [a-zA-Z0-9'.-]+)*$/.test(v);
+      }
+    }
+  }
+});
+
+var EmployerSchema = new Schema({
+  jobTitle: {
+    type: String,
+    maxlength: 30,
+    validate: {
+      validator: function(v) {
+        return /^[a-zA-Z0-9'.-]+( [a-zA-Z0-9'.-]+)*$/.test(v);
+      }
+    }
+  },
+  company: {
+    type: String,
+    maxlength: 30,
+    validate: {
+      validator: function(v) {
+        return /^[a-zA-Z0-9'.-]+( [a-zA-Z0-9'.-]+)*$/.test(v);
+      }
+    }
+  }
 });
 
 var ContactSchema = new Schema({
@@ -80,17 +75,12 @@ var ContactSchema = new Schema({
       }
     }
   },
-  phone: {
-    type: String,
-    validate: {
-      validator: function(v) {
-        return /^\d{10}$/.test(v);
-      }
-    }
+  location: {
+    type: LocationSchema,
   },
-  address: {
-    type: AddressSchema,
-  },  
+  employer: {
+    type: EmployerSchema
+  }  
 });
 
 module.exports = mongoose.model('Contacts', ContactSchema);
