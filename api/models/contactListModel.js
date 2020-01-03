@@ -10,7 +10,7 @@ var LocationSchema = new Schema({
       validator: function(v) {
         return /^[a-zA-Z0-9'.,-]+( [a-zA-Z0-9'.-]+)*$/.test(v);
       }
-    }
+    },
   },
   country: {
     type: String,
@@ -20,7 +20,8 @@ var LocationSchema = new Schema({
         return /^[a-zA-Z0-9'.-]+( [a-zA-Z0-9'.-]+)*$/.test(v);
       }
     }
-  }
+  },
+  _id: false
 });
 
 var EmployerSchema = new Schema({
@@ -41,7 +42,8 @@ var EmployerSchema = new Schema({
         return /^[a-zA-Z0-9'.-]+( [a-zA-Z0-9'.-]+)*$/.test(v);
       }
     }
-  }
+  },
+  _id: false
 });
 
 var ContactSchema = new Schema({
