@@ -8,7 +8,7 @@ var LocationSchema = new Schema({
     maxlength: 30,
     validate: {
       validator: function(v) {
-        return /^[a-zA-Z0-9'.,-]+( [a-zA-Z0-9'.-]+)*$/.test(v);
+        return /^[a-zA-Z0-9'., -]+( [a-zA-Z0-9'.-]+)*$/.test(v);
       }
     },
   },
