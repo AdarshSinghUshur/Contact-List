@@ -7,3 +7,4 @@ To use:
 2. run npm install
 3. start mongo
 4. start the API with "npm run start"
+5. access the endpoints with localhost:3000/
